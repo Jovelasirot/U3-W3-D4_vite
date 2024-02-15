@@ -14,27 +14,27 @@ const ArticlesList = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchSpaceArticles = async () => {
-      try {
-        const endPoint = "https://api.spaceflightnewsapi.net/v4/articles";
-        const response = await fetch(endPoint);
+  const fetchSpaceArticles = async () => {
+    try {
+      const endPoint = "https://api.spaceflightnewsapi.net/v4/articles";
+      const response = await fetch(endPoint);
 
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-          setLoading(false);
-          setArticles(data.results);
-        } else {
-          setLoading(false);
-          throw new Error("Error while fetching Articles");
-        }
-      } catch (error) {
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
         setLoading(false);
-        console.log(error);
+        setArticles(data.results);
+      } else {
+        setLoading(false);
+        throw new Error("Error while fetching Articles");
       }
-    };
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
     fetchSpaceArticles();
   }, []);
 

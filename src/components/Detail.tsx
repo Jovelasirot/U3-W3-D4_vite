@@ -11,28 +11,29 @@ const Detail = () => {
   const params = useParams();
   const articleId = params.ArticleId;
 
-  useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        const endPoint = `https://api.spaceflightnewsapi.net/v4/articles/${articleId}`;
-        const response = await fetch(endPoint);
+  const fetchDetails = async () => {
+    try {
+      const endPoint = `https://api.spaceflightnewsapi.net/v4/articles/${articleId}`;
+      const response = await fetch(endPoint);
 
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data);
-          setLoading(false);
-          setDetail(data);
-        } else {
-          setLoading(false);
-          throw new Error("Error while fetching Detail");
-        }
-      } catch (error) {
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
         setLoading(false);
-        console.log(error);
+        setDetail(data);
+      } else {
+        setLoading(false);
+        throw new Error("Error while fetching Detail");
       }
-    };
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
     fetchDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [articleId]);
 
   return (
