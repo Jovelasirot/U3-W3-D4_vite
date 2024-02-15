@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Placeholder, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
-import Detail from "../interfaces/Detail";
+import IDetail from "../interfaces/IDetail";
 
-const Detail: React.FC = () => {
-  const [detail, setDetail] = useState<Detail | null>(null);
+const Detail = () => {
+  // const [detail, setDetail] = useState<IDetail[]>([]);
+  const [detail, setDetail] = useState<IDetail | null>(null);
   const [loading, setLoading] = useState(true);
 
   const params = useParams();
@@ -17,7 +18,7 @@ const Detail: React.FC = () => {
         const response = await fetch(endPoint);
 
         if (response.ok) {
-          const data: Detail = await response.json();
+          const data = await response.json();
           console.log(data);
           setLoading(false);
           setDetail(data);

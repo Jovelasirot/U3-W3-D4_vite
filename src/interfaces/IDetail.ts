@@ -1,4 +1,4 @@
-export interface Detail {
+export interface IDetail {
   id: number;
   title: string;
   url: string;
@@ -12,4 +12,4 @@ export interface Detail {
   events: never[];
 }
 
-export default Detail;
+export default IDetail;

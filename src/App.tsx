@@ -8,7 +8,7 @@ import NotFound from "./components/NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <main className="vh-100">
+      <main>
         <Routes>
           <Route element={<ArticlesList />} path="/" />
           <Route element={<Detail />} path="/Details/:ArticleId" />
